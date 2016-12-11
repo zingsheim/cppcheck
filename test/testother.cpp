@@ -187,6 +187,7 @@ private:
         TEST_CASE(moveAndClear);
         TEST_CASE(movedPointer);
         TEST_CASE(partiallyMoved);
+        TEST_CASE(baseMoved);
         TEST_CASE(moveAndLambda);
         TEST_CASE(forwardAndUsed);
     }
@@ -6269,6 +6270,16 @@ private:
               "    A a;\n"
               "    gx(std::move(a).x());\n"
               "    gy(std::move(a).y());\n"
+              "}");
+        ASSERT_EQUALS("", errout.str());
+    }
+
+    void baseMoved() {
+        check("T & T::operator=(T && rhs)\n"
+              "{\n"
+              "    Base1::operator=(std::move(static_cast<Base1 &>(rhs)));\n"
+              "    Base2::operator=(std::move(static_cast<Base2 &>(rhs)));\n"
+              "    return *this;\n"
               "}");
         ASSERT_EQUALS("", errout.str());
     }
