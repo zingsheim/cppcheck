@@ -2723,7 +2723,7 @@ void Tokenizer::setVarIdPass1()
                     if (tok && tok->str() == "<") {
                         const Token *end = tok->findClosingBracket();
                         while (tok != end) {
-                            if (tok->isName() && variableId.find(tok->str()) != variableId.end())
+                            if (tok->isName() && tok->strAt(1) != "::" && variableId.find(tok->str()) != variableId.end())
                                 tok->varId(variableId[tok->str()]);
                             tok = tok->next();
                         }
