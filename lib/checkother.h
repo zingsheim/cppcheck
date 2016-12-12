@@ -72,6 +72,7 @@ public:
         checkOther.checkInterlockedDecrement();
         checkOther.checkUnusedLabel();
         checkOther.checkEvaluationOrder();
+        checkOther.checkAccessOfMovedVariable();
     }
 
     /** @brief Run checks against the simplified token list */
@@ -94,7 +95,6 @@ public:
         checkOther.checkRedundantCopy();
         checkOther.checkSuspiciousEqualityComparison();
         checkOther.checkComparisonFunctionIsAlwaysTrueOrFalse();
-        checkOther.checkAccessOfMovedVariable();
     }
 
     /** @brief Clarify calculation for ".. a * b ? .." */
