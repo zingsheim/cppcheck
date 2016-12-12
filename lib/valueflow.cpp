@@ -1767,7 +1767,7 @@ static void valueFlowAfterMove(TokenList *tokenlist, SymbolDatabase* symboldatab
                 continue;
             const unsigned int varid = varTok->varId();
             const Variable *var = varTok->variable();
-            if (!var)
+            if (!var || (!var->isLocal() && !var->isArgument()))
                 continue;
             const Token * const endOfVarScope = var->typeStartToken()->scope()->classEnd;
 
