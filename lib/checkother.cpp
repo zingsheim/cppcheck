@@ -2712,6 +2712,8 @@ void CheckOther::checkAccessOfMovedVariable()
                 scopeStart = memberInitializationStart;
         }
         for (const Token* tok = scopeStart->next(); tok != scope->classEnd; tok = tok->next()) {
+            if (!tok->varId())
+                continue;
             const ValueFlow::Value * movedValue = tok->getMovedValue();
             if (!movedValue)
                 continue;
